@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: 'localhost',
-    USER: 'meriem',
-    PASSWORD: 'StrongPassword123!',
-    DB: 'node_js',
+    HOST: 'mysql.railway.internal',
+    USER: 'root',
+    PASSWORD: 'NOlVkziioaPdQmJkFFNdKUtQSMxVYwMm',
+    DB: 'railway',
     dialect: 'mysql',
 
     pool: {
