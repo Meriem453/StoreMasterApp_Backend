@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api",
+      "url": "https://storemasterappbackend.up.railway.app/api",
       "description": "Local development server"
     }
   ],
