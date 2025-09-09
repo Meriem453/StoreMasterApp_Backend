@@ -1,0 +1,273 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Product & Supplier API",
+    "version": "1.0.0",
+    "description": "API documentation for managing products, suppliers, categories, and commands."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/addProduct": {
+      "post": {
+        "summary": "Add a new product",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "price": { "type": "number" },
+                  "quantity": { "type": "integer" },
+                  "benefit": { "type": "number" },
+                  "barcode": { "type": "string" },
+                  "supplier": { "type": "integer" }
+                },
+                "required": ["name", "price", "quantity", "barcode", "supplier"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Product added successfully" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/allProducts": {
+      "get": {
+        "summary": "Get all products",
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "content": {
+              "application/json": { "schema": { "type": "array", "items": { "type": "object" } } }
+            }
+          }
+        }
+      }
+    },
+    "/editProduct": {
+      "post": {
+        "summary": "Update a product",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "price": { "type": "number" },
+                  "quantity": { "type": "integer" },
+                  "benefit": { "type": "number" },
+                  "barcode": { "type": "string" }
+                },
+                "required": ["id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Product updated" },
+          "404": { "description": "Product not found" }
+        }
+      }
+    },
+    "/deleteProduct": {
+      "delete": {
+        "summary": "Delete a product",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Product deleted" },
+          "404": { "description": "Product not found" }
+        }
+      }
+    },
+    "/addSupplier": {
+      "post": {
+        "summary": "Add a new supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "contact": { "type": "string" },
+                  "category": { "type": "string" }
+                },
+                "required": ["name", "contact", "category"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Supplier added" }
+        }
+      }
+    },
+    "/editSupplier": {
+      "post": {
+        "summary": "Update a supplier",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "contact": { "type": "string" },
+                  "category": { "type": "string" }
+                },
+                "required": ["id", "name", "contact"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Supplier updated" },
+          "404": { "description": "Supplier not found" }
+        }
+      }
+    },
+    "/deleteSupplier": {
+      "delete": {
+        "summary": "Delete a supplier",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Supplier deleted" },
+          "404": { "description": "Supplier not found" }
+        }
+      }
+    },
+    "/allSuppliers": {
+      "get": {
+        "summary": "Get all suppliers with category info",
+        "responses": {
+          "200": { "description": "List of suppliers" }
+        }
+      }
+    },
+    "/allCategories": {
+      "get": {
+        "summary": "Get all categories",
+        "responses": {
+          "200": { "description": "List of categories" }
+        }
+      }
+    },
+    "/getProductOfSupplier": {
+      "get": {
+        "summary": "Get products of a supplier",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Products of supplier" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/getProductOfBarcode": {
+      "get": {
+        "summary": "Get product by barcode",
+        "parameters": [
+          { "name": "barcode", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Product found" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/getProductOfCategory": {
+      "get": {
+        "summary": "Get product by category",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Product(s) of category" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/addCommand": {
+      "post": {
+        "summary": "Add a new command",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "datetime": { "type": "string", "format": "date-time" },
+                  "supplier": { "type": "integer" },
+                  "expdate": { "type": "string", "format": "date" }
+                },
+                "required": ["datetime", "supplier", "expdate"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Command added" }
+        }
+      }
+    },
+    "/getCommandsOfSupplier": {
+      "get": {
+        "summary": "Get commands of a supplier",
+        "parameters": [
+          { "name": "id", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "List of commands" }
+        }
+      }
+    },
+    "/addProductgroups": {
+      "post": {
+        "summary": "Add product groups",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "quantity": { "type": "integer" },
+                    "product": { "type": "integer" },
+                    "command": { "type": "integer" }
+                  },
+                  "required": ["quantity", "product", "command"]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Product groups inserted" }
+        }
+      }
+    }
+  }
+}

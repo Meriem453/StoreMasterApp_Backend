@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 // routers
 const router = require('./routes/productRouter.js')
 app.use('/api', router)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 //port
