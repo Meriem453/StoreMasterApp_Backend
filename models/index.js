@@ -6,6 +6,10 @@ const sequelize = new Sequelize(
     dbConfig.DB, {
         dialect: dbConfig.dialect,
         operatorsAliases: false,
+         dialectOptions: {
+      connectTimeout: 60000 // increase timeout for Railway connections
+    },
+         logging: false,
         pool: {
             max: dbConfig.pool.max,
             min: dbConfig.pool.min,
