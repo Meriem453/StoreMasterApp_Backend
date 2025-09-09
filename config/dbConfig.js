@@ -1,10 +1,6 @@
 module.exports = {
-    HOST: 'mysql.railway.internal',
-    USER: 'root',
-    PASSWORD: 'NOlVkziioaPdQmJkFFNdKUtQSMxVYwMm',
-    DB: 'railway',
+    DB: 'mysql://root:NOlVkziioaPdQmJkFFNdKUtQSMxVYwMm@maglev.proxy.rlwy.net:42941/railway',
     dialect: 'mysql',
-
     pool: {
         max: 5,
         min: 0,
