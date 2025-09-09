@@ -4,7 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
 const app = express()
-
+app.use(cors());
 // middleware
 
 app.use(express.json())
