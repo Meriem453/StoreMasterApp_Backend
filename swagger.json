@@ -26,7 +26,7 @@
                   "price": { "type": "number" },
                   "quantity": { "type": "integer" },
                   "benefit": { "type": "number" },
-                  "barcode": { "type": "string" },
+                  "barcode": { "type": "integer" },
                   "supplier": { "type": "integer" }
                 },
                 "required": ["name", "price", "quantity", "barcode", "supplier"]
