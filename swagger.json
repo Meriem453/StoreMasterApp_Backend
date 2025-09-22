@@ -29,7 +29,7 @@
                   "barcode": { "type": "integer" },
                   "supplier": { "type": "integer" }
                 },
-                "required": ["name", "price", "quantity", "barcode", "supplier"]
+                "required": ["name", "price", "quantity", "barcode", "supplier", "benefit"]
               }
             }
           }
@@ -68,7 +68,7 @@
                   "price": { "type": "number" },
                   "quantity": { "type": "integer" },
                   "benefit": { "type": "number" },
-                  "barcode": { "type": "string" }
+                  "barcode": { "type": "integer" }
                 },
                 "required": ["id"]
               }
